@@ -45,6 +45,9 @@ class UserAccountLoginView(APIView):
 
 class UserAccountLogoutView(APIView):
    def get(self,request):
+      print("YES",request.user)
+      if str(request.user)=='AnonymousUser':
+          return Response({"error": "User already logout"}, status=status.HTTP_400_BAD_REQUEST)
       request.user.auth_token.delete()
       logout(request)
       return Response({"success": "User Logout Successfull"}, status=status.HTTP_200_OK)
