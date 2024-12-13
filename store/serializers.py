@@ -16,7 +16,7 @@ class ProductSerializer(serializers.ModelSerializer):
     fields='__all__'
 
 
-class StockSerializer(serializers.ModeSerializer):
+class StockSerializer(serializers.ModelSerializer):
   product=ProductSerializer()
 
   class Meta:
