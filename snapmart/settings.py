@@ -25,9 +25,21 @@ SECRET_KEY = 'django-insecure-r&r5z^vd8q%olgcz-2d424nz*a!8f(+=h$f)e@s3e#14i&tw+o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*",".vercel.app",'127.0.0.1']
+
+CORS_ORIGIN_WHITELIST = (
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+)
+
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000',"http://localhost:8000"]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 AUTH_USER_MODEL = 'account.UserAccount'
+
+
 
 # Application definition
 
@@ -89,6 +101,18 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# connect postgresql 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'USER': 'postgres.fmvozekpljglixpjyvnv',
+#         'PASSWORD': 'WSWofNY0qgwDjSq0',
+#         'HOST': 'aws-0-ap-southeast-1.pooler.supabase.com',
+#         'PORT': '6543'
+#     }
+# }
 
 
 # Password validation
