@@ -95,24 +95,25 @@ WSGI_APPLICATION = 'snapmart.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-# connect postgresql 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': 'postgres.fmvozekpljglixpjyvnv',
-#         'PASSWORD': 'WSWofNY0qgwDjSq0',
-#         'HOST': 'aws-0-ap-southeast-1.pooler.supabase.com',
-#         'PORT': '6543'
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+
+# connect postgresql 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres.vovjpmzgptdtgwfmiwkg',
+        'PASSWORD': 'revc7REcEyRZRL8O',
+        'HOST': 'aws-0-ap-southeast-1.pooler.supabase.com',
+        'PORT': '6543'
+    }
+}
 
 
 # Password validation
