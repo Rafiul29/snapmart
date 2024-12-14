@@ -73,8 +73,25 @@ class CategoryViewSet(viewsets.ModelViewSet):
       except Exception as e:
           return Response({"error": f"An error occurred: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)
 
-    # delete product DELETE Method
-  
+  # Update specifc any field PATCH Method
+  def partial_update(self, request, pk=None):
+        try:
+            category = Category.objects.get(pk=pk)
+
+             # Get the updated data from the request
+            name = request.data.get('name',category.name)
+          
+            category.name=name
+
+            category.save()
+
+            serializer = CategorySerializer(category)
+
+            return Response({"data":serializer.data,"success":"Category udated successfully"}, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({"error": f"An error occurred: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)
+
   # delete Category DELETE Method
   def destroy(self, request, *args, **kwargs):
     try:
@@ -342,7 +359,6 @@ class StockViewSet(viewsets.ModelViewSet):
         except Exception as e:
             return Response({"error": f"An error occurred: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)
 
-    # delete product DELETE Method
   
   # delete product stock DELETE Method
   def destroy(self, request, *args, **kwargs):
