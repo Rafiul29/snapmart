@@ -22,5 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Home.as_view()),
     path('api/auth/',include('account.urls')),
-    path('store/', include('store.urls')),
+    path('api/store/', include('store.urls')),
 ]
