@@ -31,9 +31,11 @@ CORS_ORIGIN_WHITELIST = (
     "http://localhost:3000",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
+     "http://0.0.0.0:8000",
+    'https://snapmart-wzw3.onrender.com'
 )
 
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000','http://0.0.0.0:8000',"http://localhost:8000",'https://snapmart-wzw3.onrender.com/']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000','http://0.0.0.0:8000',"http://localhost:8000",'https://snapmart-wzw3.onrender.com']
 
 CORS_ALLOW_ALL_ORIGINS = True
 
