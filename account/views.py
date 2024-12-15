@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth import authenticate,login,logout
 from rest_framework.authtoken.models import Token
-
+from rest_framework.permissions import IsAuthenticated
 from .serializers import UserAccountRegistrationSerializer, UserAccountLoginSerializer
 
 
@@ -38,18 +38,24 @@ class UserAccountLoginView(APIView):
                 'role':user.role
             }}, status=status.HTTP_200_OK)
             
-            return Response({"error": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"error": "Incorrect username or password"}, status=status.HTTP_400_BAD_REQUEST)
         
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"error": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserAccountLogoutView(APIView):
-   def get(self,request):
-      if str(request.user)=='AnonymousUser':
-          return Response({"error": "User already logout"}, status=status.HTTP_400_BAD_REQUEST)
-      request.user.auth_token.delete()
-      logout(request)
-      return Response({"success": "User Logout Successfull"}, status=status.HTTP_200_OK)
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        print("USER",request.user)
+        if not request.user.is_authenticated:  # Check if the user is authenticated
+            return Response({"error": "User is not logged in"}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            request.user.auth_token.delete()  # Delete the user's authentication token
+            logout(request)  # Log out the user
+            return Response({"success": "User Logout Successful"}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"error": f"An error occurred: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 #   {

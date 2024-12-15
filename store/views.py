@@ -4,19 +4,26 @@ from .models import Category,Product,Stock
 from .serializers import CategorySerializer,ProductSerializer,StockSerializer
 from rest_framework.response import Response
 from rest_framework import status
-
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 # Create your views here.
 class CategoryViewSet(viewsets.ModelViewSet):
   queryset = Category.objects.all()
   serializer_class = CategorySerializer
+  permission_classes = [IsAuthenticated]
 
+  def get_permissions(self):
+    # get all category is public method but another method authenticated
+        if self.action == 'list':  
+            return [AllowAny()]
+        return [IsAuthenticated()] 
+  
   # get all Category Get Method
   def list(self, request, *args, **kwargs):
       queryset = Category.objects.all()
       serializer = self.get_serializer(queryset, many=True)
       return Response({"data":serializer.data,"success":"Fetch all Categories"})
-    #  get single product Get Method
+
   
   # get single Category Get Method
   def retrieve(self, request, pk=None, *args, **kwargs):
@@ -42,6 +49,8 @@ class CategoryViewSet(viewsets.ModelViewSet):
           if not name:
             return Response({"error": "Category name is required"}, status=status.HTTP_400_BAD_REQUEST)
           
+          if Category.objects.filter(name=name).exists():
+            return Response({"error": "Category name already exist"}, status=status.HTTP_400_BAD_REQUEST)
           catetory=Category.objects.create(name=name)
 
           serializer = CategorySerializer(catetory)
@@ -106,6 +115,13 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+    def get_permissions(self):
+    # get all product is public method but another method authenticated
+        if self.action == 'list':  
+            return [AllowAny()]
+        return [IsAuthenticated()] 
+  
 
     # get all products Get Method
     def list(self, request, *args, **kwargs):
@@ -247,6 +263,12 @@ class StockViewSet(viewsets.ModelViewSet):
   queryset = Stock.objects.all()
   serializer_class = StockSerializer
 
+  def get_permissions(self):
+    # get all product product is public method but another method authenticated
+        if self.action == 'list':  
+            return [AllowAny()]
+        return [IsAuthenticated()] 
+  
   # get all Stocks Product Get Method
   def list(self, request, *args, **kwargs):
       queryset = Stock.objects.all()
@@ -269,8 +291,6 @@ class StockViewSet(viewsets.ModelViewSet):
         except Exception as e:
             return Response({"error": f"An error occurred: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)
 
-    # create a new product  POST Method
-  
   # create new  product stock POST Method 
   def create(self, request, *args, **kwargs):
        quantity = request.data.get('quantity')
@@ -282,6 +302,9 @@ class StockViewSet(viewsets.ModelViewSet):
           
           product = Product.objects.get(id=product_id)
 
+          if Stock.objects.filter(product_id=product_id).exists():
+            return Response({"error": "Product stock  already added please update"}, status=status.HTTP_400_BAD_REQUEST)
+
           stock=Stock.objects.create(quantity=quantity,product=product)
 
           serializer = StockSerializer(stock)
@@ -292,9 +315,7 @@ class StockViewSet(viewsets.ModelViewSet):
           return Response({"error": "Product doesn't exist"}, status=status.HTTP_400_BAD_REQUEST)
        except Exception as e:
         return Response({"error": f"An error occurred: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)
-       
-    # update all document Put Method
-  
+
   # update product stock PUT Method
   def update(self, request, pk=None):
       try:
@@ -359,7 +380,6 @@ class StockViewSet(viewsets.ModelViewSet):
         except Exception as e:
             return Response({"error": f"An error occurred: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)
 
-  
   # delete product stock DELETE Method
   def destroy(self, request, *args, **kwargs):
         try:
