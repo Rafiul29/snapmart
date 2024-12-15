@@ -15,7 +15,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
 #### PostgreSQL Integration
 - Database connection using PostgreSQL and management through pgAdmin4.
 
-### Bonus Features
+### Extra Features
 
 - Dockerized setup for easy deployment.
 - Hosting-ready architecture.
@@ -41,8 +41,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
      "username": "rafiul_islam",
      "password": "Rafi12234",
      "confirm_password":"Rafi12234",
-     "email": "rafiul@gmail.com",
-     "role":"customer"
+     "email": "rafiul@gmail.com"
     }
   ```
 - **Response**:
