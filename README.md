@@ -33,6 +33,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
 **Register**
 - **URL**: `/auth/register/`
 - **Method**: `POST`
+- **Access**: `Public`
 - **Request Body**:
   ```json
     {
@@ -54,6 +55,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
 **Login**
 - **URL**: `/auth/login/`
 - **Method**: `POST`
+- **Access**: `Public`
 - **Request Body**:
   ```json
   {
@@ -76,6 +78,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
 **Logout**
 - **URL**: `/auth/logout/`
 - **Method**: `GET`
+- **Access**: `Private`
 - **Response**:
   ```json
     {
@@ -90,6 +93,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
 **List All Categories**
 - **URL**: `/store/categories/`
 - **Method**: `GET`
+- **Access**: `Public`
 - **Response**:
   ```json
     {
@@ -110,6 +114,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
 **Create a Category**
 - **URL**: `/store/categories/`
 - **Method**: `POST`
+- **Access**: `Private`
 - **Request Body**:
   ```json
     {
@@ -130,6 +135,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
 **Retrieve a Category**
 - **URL**: `/store/categories/{id}/`
 - **Method**: `GET`
+- **Access**: `Private`
 - **Response**:
   ```json
     {
@@ -144,6 +150,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
 **Update a Category**
 - **URL**: `/store/categories/{id}/`
 - **Method**: `PUT`
+- **Access**: `Private`
 - **Request Body**:
   ```json
     {
@@ -164,6 +171,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
 **Update specifc any field a Category**
 - **URL**: `/store/categories/{id}/`
 - **Method**: `PATCH`
+- **Access**: `Private`
 - **Request Body**:
   ```json
     {
@@ -184,6 +192,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
 **Delete a Category**
 - **URL**: `/store/categories/{id}/`
 - **Method**: `DELETE`
+- **Access**: `Private`
 - **Response**: 
 ```json
     {
@@ -196,6 +205,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
 **List All Products**
 - **URL**: `/store/products/`
 - **Method**: `GET`
+- **Access**: `Public`
 - **Response**:
   ```json
     {
@@ -228,6 +238,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
 **Create a Product**
 - **URL**: `/store/products/`
 - **Method**: `POST`
+- **Access**: `Private`
 - **Request Body**:
   ```json
     {
@@ -256,6 +267,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
 **Update a Product All Document**
 - **URL**: `/store/products/{id}/`
 - **Method**: `PUT`
+- **Access**: `Private`
 - **Request Body**:
   ```json
    {
@@ -285,6 +297,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
  **Update a Product Any Fields**
 - **URL**: `/store/products/{id}/`
 - **Method**: `PATCH`
+- **Access**: `Private`
 - **Request Body**:
   ```json
    {
@@ -312,6 +325,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
 **Delete a Product**
 - **URL**: `/store/products/{id}/`
 - **Method**: `DELETE`
+- **Access**: `Private`
 - **Response**: 
 ```json
     {
@@ -324,6 +338,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
 **List All Stocks**
 - **URL**: `/store/stocks/`
 - **Method**: `GET`
+- **Access**: `Public`
 - **Response**:
   ```json
     {
@@ -350,6 +365,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
  **Get  Single Product Stocks**
 - **URL**: `/store/stocks/{id}/`
 - **Method**: `GET`
+- **Access**: `Private`
 - **Response**:
   ```json
     {
@@ -373,7 +389,8 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
   
 **Create a new Product Stocks**
 - **URL**: `/store/stocks/`
-- **Method**: `POST
+- **Method**: `POST`
+- **Access**: `Private`
 - **Request Body**:
     ```json
         {
@@ -405,6 +422,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
 **Update a single Product Stocks All Document**
 - **URL**: `/store/stocks/{id}/`
 - **Method**: `PUT`
+- **Access**: `Private`
 - **Request Body**:
   ```json
     {
@@ -437,6 +455,7 @@ Welcome to Snapmart, an e-commerce platform designed to simplify online shopping
 **Update a single Product Stocks All Document**
 - **URL**: `/store/stocks/{id}/`
 - **Method**: `PATCH`
+- **Access**: `Private`
 - **Request Body**:
   ```json
     {
