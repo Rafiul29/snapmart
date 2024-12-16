@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import UserAccount
+import re
 
 class UserAccountRegistrationSerializer(serializers.ModelSerializer):
     confirm_password = serializers.CharField(write_only=True, required=True)
@@ -19,6 +20,9 @@ class UserAccountRegistrationSerializer(serializers.ModelSerializer):
 
         if password != confirm_password:
             raise serializers.ValidationError({'password': "Password don't match."})
+        
+        if not re.match(r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()-+]).{8,}$', password):
+            raise serializers.ValidationError({"password":"This password must contain at least 8 characters, one uppercase letter, one lowercase letter, one digit and one symbol."})
 
         if UserAccount.objects.filter(email=email).exists():
             raise serializers.ValidationError({'email': "Email already exists."})
